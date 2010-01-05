@@ -62,6 +62,30 @@ public class AssertionTest {
 			assertEquals("not equal: array lengths differed, expected.length=0 actual.length=1", exception.getMessage());
 		}
 	}
+
+	@Test public void arraysDifferentAtElement0DifferentLengthMessage() {
+		try {
+			assertArrayEquals("not equal", (new Object[] { true, false }), (new Object[] { false }));
+		} catch (AssertionError exception) {
+			assertEquals("not equal: arrays first differed at element [0]; expected:<true> but was:<false>", exception.getMessage());
+		}
+	}
+
+	@Test public void arraysDifferentAtElement0DifferentLength() {
+		try {
+			assertArrayEquals((new Object[] { true, false }), (new Object[] { false }));
+		} catch (AssertionError exception) {
+			assertEquals("arrays first differed at element [0]; expected:<true> but was:<false>", exception.getMessage());
+		}
+	}
+
+	@Test public void arraysDifferentAtElement1DifferentLength() {
+		try {
+			assertArrayEquals((new Object[] { true, true }), (new Object[] { true, false, false }));
+		} catch (AssertionError exception) {
+			assertEquals("arrays first differed at element [1]; expected:<true> but was:<false>", exception.getMessage());
+		}
+	}
 	
 	@Test(expected=ArrayComparisonFailure.class) public void arraysElementsDiffer() {
 		assertArrayEquals("not equal", (new Object[] {"this is a very long string in the middle of an array"}), (new Object[] {"this is another very long string in the middle of an array"}));
