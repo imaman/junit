@@ -31,6 +31,7 @@ public abstract class ComparisonCriteria {
 			return;
 		String header= message == null ? "" : message + ": ";
 
+      // Should be changed here [IM]
 		int expectedsLength= assertArraysAreSameLength(expecteds,
 				actuals, header);
 
